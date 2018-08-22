@@ -11,3 +11,5 @@ See also [Scala Reference](https://docs.scala-lang.org/).
 * **Introduction**
   * [Hello Fworld](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p01helloiiifworld.md)
   * [Interaction With Java](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p02interactioniiiwithiiijava.md)
+  * [Everything Is An Object](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p03everythingiiiisiiianiiiobject.md)
+  * [Anonymous Functions](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p04anonymousiiifunctions.md)
