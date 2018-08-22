@@ -10,3 +10,4 @@ See also [Scala Reference](https://docs.scala-lang.org/).
 ## Basics 
 * **Introduction**
   * [Hello Fworld](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p01helloiiifworld.md)
+  * [Interaction With Java](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p02interactioniiiwithiiijava.md)
