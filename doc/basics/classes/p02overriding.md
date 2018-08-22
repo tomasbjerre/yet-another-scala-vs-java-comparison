@@ -18,6 +18,7 @@ class Example(real: Double, imaginary: Double) {
   override def toString() =
     "" + re + (if (im < 0) "" else "+") + im + "i"
 }
+
 ```
 
 ## Java

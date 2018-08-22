@@ -16,3 +16,5 @@ See also [Scala Reference](https://docs.scala-lang.org/).
   * [Interaction With Java](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p02interactioniiiwithiiijava.md)
   * [Everything Is An Object](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p03everythingiiiisiiianiiiobject.md)
   * [Anonymous Functions](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p04anonymousiiifunctions.md)
+* **Pattern Matching**
+  * [Tree](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/patterniiimatching/p01tree.md)
