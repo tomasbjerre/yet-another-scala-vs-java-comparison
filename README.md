@@ -18,3 +18,5 @@ See also [Scala Reference](https://docs.scala-lang.org/).
   * [Anonymous Functions](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p04anonymousiiifunctions.md)
 * **Pattern Matching**
   * [Tree](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/patterniiimatching/p01tree.md)
+* **Traits**
+  * [Ord](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/traits/p01ord.md)
