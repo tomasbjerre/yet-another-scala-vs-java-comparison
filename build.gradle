@@ -1,0 +1,187 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            url 'https://raw.github.com/java-decompiler/mvn-repo/master'
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.7.1'
+    }
+}
+
+
+apply plugin: 'scala'
+apply plugin: "com.github.sherter.google-java-format"
+
+group = 'se.bjurr.scalavsjava'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+sourceSets {
+    main.java.srcDirs = []
+}
+repositories {
+    mavenCentral()
+    jcenter()
+}
+dependencies {
+    compile 'javax.inject:javax.inject:1'
+    compile 'org.scala-lang:scala-library:2.11.12'
+}
+
+import com.github.sherter.googlejavaformatgradleplugin.GoogleJavaFormat
+
+task format(type: GoogleJavaFormat) {
+    source 'src/main/java'
+    include '**/*.java'
+}
+
+class GenerateComparisonTask extends DefaultTask {
+
+    def getAllExampleDirs(String folder) {
+        Map<String, File> found = new TreeMap<String, String>()
+        File rootDir = new File(project.getRootDir().getAbsolutePath() + folder)
+        rootDir.eachDirRecurse() { dir ->
+            if (dir.getName().matches(/^p[0-9]+?.*/)) {
+                File parentFile = new File(dir.getParent())
+                String parent = parentFile.getName()
+                String parentParent = new File(parentFile.getParent()).getName()
+                found.put(parentParent + "/" + parent + "/" + dir.getName(), dir)
+            }
+        }
+        found
+    }
+
+    def generateDoc(String exampleName, File exampleDir, File resultDir) {
+        println "${exampleName}"
+        Map<String, String> exampleInputs = exampleDir
+                .listFiles()
+                .findAll({ it.isFile() })
+                .collectEntries({ [(it.getName()), it.getText("UTF-8")] })
+        Map<String, String> exampleOutputs = resultDir
+                .listFiles()
+                .findAll({ it.isFile() })
+                .collectEntries({ [(it.getName()), it.getText("UTF-8")] })
+
+        String doc = """
+[<< back](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison)
+
+-----------------------------
+
+# ${pretty(exampleName)}
+""".stripMargin()
+
+
+        doc += """
+## Scala
+"""
+        exampleInputs.each { fileName, fileContent ->
+            doc += """
+**${fileName}**
+
+```scala
+${fileContent}
+```
+""".stripMargin()
+        }
+
+        doc += """
+## Java
+"""
+        exampleOutputs.each { fileName, fileContent ->
+            doc += """
+**${fileName}**
+
+```java
+${fileContent}
+```
+""".stripMargin()
+
+
+        }
+
+        def dir = project.getRootDir().getAbsolutePath() + "/doc"
+        File docFile = new File(dir + "/" + exampleName + ".md")
+        println("Creating ${docFile}")
+        docFile.getParentFile().mkdirs()
+        docFile.createNewFile()
+        docFile.write(doc)
+        return docFile
+    }
+
+    Map<String, Map<String, Map<String, String>>> getByCategory(Map<String, String> examples) {
+        Map<String, Map<String, Map<String, String>>> to = new TreeMap<>()
+        examples.each { categoryPath, filePath ->
+            def parts = categoryPath.split("/")
+            def mainCategory = parts[0]
+            def subCategory = parts[1]
+            def subSubCategory = parts[2]
+            if (!to.containsKey(mainCategory)) {
+                to.put(mainCategory, new TreeMap<>())
+            }
+            if (!to.get(mainCategory).containsKey(subCategory)) {
+                to.get(mainCategory).put(subCategory, new TreeMap<>())
+            }
+            to.get(mainCategory).get(subCategory).put(subSubCategory, filePath)
+        }
+        return to
+    }
+
+    def pretty(String from) {
+        from.split("/").reverse()[0].replaceAll(/^(p[0-9]+)/, "").replaceAll("iii", " ").split(" ").collect({
+            it.capitalize().trim()
+        }).join(" ").trim()
+    }
+
+    @TaskAction
+    void doAction() {
+        Map<String, File> exampleDirs = getAllExampleDirs("/src/main/scala")
+        Map<String, File> exampleDirResults = getAllExampleDirs("/src/main/java")
+        Map<String, File> examples = new TreeMap<String, File>()
+
+        exampleDirs.each { exampleName, exampleDir ->
+            println "hanterar \"${exampleName}\" ${exampleDirResults}"
+            File resultDir = exampleDirResults[exampleName]
+            File generated = generateDoc(exampleName, exampleDir, resultDir)
+            String generatedRelative = generated.getAbsolutePath().replaceAll(project.getRootDir().getAbsolutePath(), "")
+            examples.put(exampleName, generatedRelative)
+        }
+
+        String readmeMd = """
+# Yet Another Scala VS Java Comparison
+
+This one shows complete examples where the Scala code is compiled to bytecode and decompiled to Java. Enabling a person familiar with Java to very quickly understand Scala.
+
+## Examples
+
+See also [Scala Reference](https://docs.scala-lang.org/).
+
+"""
+
+        Map<String, Map<String, Map<String, String>>> examplesByCategory = getByCategory(examples)
+
+        examplesByCategory.each { mainCategory, subCategories ->
+            def mainTitle = pretty(mainCategory)
+            readmeMd += "## ${mainTitle} \n"
+            subCategories.each { subCategory, filePaths ->
+                def subCategoryTitle = pretty(subCategory)
+                readmeMd += "* **${subCategoryTitle}**\n"
+                filePaths.each { fileName, filePath ->
+                    def fileNameTitle = pretty(fileName)
+                    readmeMd += "  * [${fileNameTitle}](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master${filePath})\n"
+                }
+            }
+        }
+
+        File mainDocFile = new File(project.getRootDir().getAbsolutePath() + "/README.md")
+        mainDocFile.createNewFile()
+        mainDocFile.write(readmeMd)
+    }
+
+}
+
+task generateComparison(type: GenerateComparisonTask)
