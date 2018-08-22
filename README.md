@@ -8,6 +8,9 @@ This one shows complete examples where the Scala code is compiled to bytecode an
 See also [Scala Reference](https://docs.scala-lang.org/).
 
 ## Basics 
+* **Classes**
+  * [Methods Without Parenthesis](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/classes/p01methodsiiiwithoutiiiparenthesis.md)
+  * [Overriding](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/classes/p02overriding.md)
 * **Introduction**
   * [Hello Fworld](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p01helloiiifworld.md)
   * [Interaction With Java](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p02interactioniiiwithiiijava.md)

@@ -121,6 +121,9 @@ ${fileContent}
         exampleDirs.each { exampleName, exampleDir ->
             println "hanterar \"${exampleName}\" ${exampleDirResults}"
             File resultDir = exampleDirResults[exampleName]
+            if (resultDir == null) {
+                throw new GradleScriptException(exampleName+" in "+exampleDirResults,null)
+            }
             File generated = generateDoc(exampleName, exampleDir, resultDir)
             String generatedRelative = generated.getAbsolutePath().replaceAll(project.getRootDir().getAbsolutePath(), "")
             examples.put(exampleName, generatedRelative)
