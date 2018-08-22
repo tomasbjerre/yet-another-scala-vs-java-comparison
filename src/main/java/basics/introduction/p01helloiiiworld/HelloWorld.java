@@ -1,6 +1,6 @@
-package basics.introduction.p01helloiiifworld;
+package basics.introduction.p01helloiiiworld;
 
-import basics.introduction.p01helloiiifworld.HelloWorld$;
+import basics.introduction.p01helloiiiworld.HelloWorld$;
 import scala.reflect.ScalaSignature;
 
 public final class HelloWorld {

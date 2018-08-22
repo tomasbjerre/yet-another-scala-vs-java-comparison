@@ -1,4 +1,4 @@
-package basics.introduction.p01helloiiifworld
+package basics.introduction.p01helloiiiworld
 
 object HelloWorld {
   def main(args: Array[String]) {

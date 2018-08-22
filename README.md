@@ -12,7 +12,7 @@ See also [Scala Reference](https://docs.scala-lang.org/).
   * [Methods Without Parenthesis](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/classes/p01methodsiiiwithoutiiiparenthesis.md)
   * [Overriding](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/classes/p02overriding.md)
 * **Introduction**
-  * [Hello Fworld](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p01helloiiifworld.md)
+  * [Hello World](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p01helloiiiworld.md)
   * [Interaction With Java](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p02interactioniiiwithiiijava.md)
   * [Everything Is An Object](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p03everythingiiiisiiianiiiobject.md)
   * [Anonymous Functions](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p04anonymousiiifunctions.md)

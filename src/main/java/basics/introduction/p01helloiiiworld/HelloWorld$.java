@@ -1,4 +1,4 @@
-package basics.introduction.p01helloiiifworld;
+package basics.introduction.p01helloiiiworld;
 
 import scala.Predef$;
 
@@ -6,7 +6,7 @@ public final class HelloWorld$ {
     public static final HelloWorld$ MODULE$;
 
     public static {
-        new basics.introduction.p01helloiiifworld.HelloWorld$();
+        new basics.introduction.p01helloiiiworld.HelloWorld$();
     }
 
     public void main(String[] args) {
