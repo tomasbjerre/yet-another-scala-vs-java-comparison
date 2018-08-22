@@ -1,22 +1,4 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-        maven {
-            url 'https://raw.github.com/java-decompiler/mvn-repo/master'
-        }
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath 'gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.7.1'
-    }
-}
-
-
 apply plugin: 'scala'
-apply plugin: "com.github.sherter.google-java-format"
 
 group = 'se.bjurr.scalavsjava'
 version = '0.0.1-SNAPSHOT'
@@ -31,13 +13,6 @@ repositories {
 dependencies {
     compile 'javax.inject:javax.inject:1'
     compile 'org.scala-lang:scala-library:2.11.12'
-}
-
-import com.github.sherter.googlejavaformatgradleplugin.GoogleJavaFormat
-
-task format(type: GoogleJavaFormat) {
-    source 'src/main/java'
-    include '**/*.java'
 }
 
 class GenerateComparisonTask extends DefaultTask {

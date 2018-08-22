@@ -5,8 +5,8 @@ This one shows complete examples where the Scala code is compiled to bytecode an
 
 ## Examples
 
-The examples are organized like the examples in the [Scala Reference](https://scalalang.org/docs/reference/).
+See also [Scala Reference](https://docs.scala-lang.org/).
 
 ## Basics 
-* **Control Flow**
-  * [Assign From If](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/controliiiflow/p01assigniiifromiiiif.md)
+* **Introduction**
+  * [Hello Fworld](https://github.com/tomasbjerre/yet-another-scala-vs-java-comparison/blob/master/doc/basics/introduction/p01helloiiifworld.md)
